@@ -1,8 +1,29 @@
-#P1Screen {
-  height: 400px;
-  width: 300px;
-  background-color: #151B54;
-}
-#P2Screen {
+body {
 
+}
+/*set height for titleRow*/
+.titleRow {
+  height: 100px;
+}
+/*set height for player screen*/
+.gameRow {
+  height: 500px;
+}
+/*details and position of the 1st screen*/
+#P1Screen {
+  margin: 0;
+  height: 500px;
+  width: 450px;
+  background-color: #151B54;
+  border-color: black;
+  border-radius: 1%;
+  border: 5px;
+}
+/*details and position of the 2nd screen*/
+#P2Screen {
+  margin:0;
+  height: 500px;
+  width: 450px;
+  background-color: #151B54;
+  border-radius: 1%;
 }
