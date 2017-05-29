@@ -10,6 +10,7 @@ var rocket = function(settings) {
     var y_top = parseInt(rocketElement.style.top);
     var y_bottom = parseInt(rocketElement.style.top) + parseInt(rocketElement.style.height);
 
+    //size of the player screen so it will be inside the screen
     var w = 450;
     var h = 500;
 
@@ -35,22 +36,26 @@ var rocket = function(settings) {
   function move(interactions) {
     if(interactions.up){
       rocketElement.style.top = parseInt(rocketElement.style.top)-8+"px";     //speed in which the rocket will move
+      //when press the rocket will rotate to the angle
       rocketElement.style.transform = "rotate(0deg)";
     }
 
     if(interactions.down){
       rocketElement.style.top = parseInt(rocketElement.style.top)+8+"px";     //speed in which the rocket will move
+      //when press the rocket will rotate the the angle
       rocketElement.style.transform = "rotate(180deg)";
 
     }
 
     if(interactions.left){
       rocketElement.style.left = parseInt(rocketElement.style.left)-8+"px";     //speed in which the rocket will move
+    //when press the rocket will rotate the the angle
       rocketElement.style.transform = "rotate(-90deg)";
     }
 
     if(interactions.right){
       rocketElement.style.left = parseInt(rocketElement.style.left)+8+"px";     //speed in which the rocket will move
+    //when press the rocket will rotate the the angle
       rocketElement.style.transform = "rotate(90deg)";
     }
 
@@ -61,6 +66,7 @@ var rocket = function(settings) {
 
   function init() {
     //create object at the start of the game.
+    //to initialise the object.
     rocketElement = document.getElementById(settings.id);
     rocketElement.style.top = '430px';
     rocketElement.style.left = '210px';

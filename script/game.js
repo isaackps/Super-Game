@@ -14,6 +14,7 @@ var Game = function() {
       automatic: false,
       godmode: false,
       id: "rocket"+ (i+1)
+
     });
 
     //interactions set to false until key pressed
@@ -24,6 +25,12 @@ var Game = function() {
       right: false
     };
   }
+  //to add obsticle into the assets
+  assets.push(new obsticle( {
+      alienSpeed: 8,
+      walls: true,
+      godmode: false,
+  }));
 
   //world settings
   var frame = 0;                //Frames since the start of the game
@@ -110,7 +117,12 @@ var Game = function() {
   function render() {
     //for each assets it has this own interactions
     for(var i = 0; i < assets.length; i++){
-      assets[i].render(interactionsArr[i])
+      if(i < 2){
+        assets[i].render(interactionsArr[i]);
+      }
+      else{
+        assets[i].render();
+      }
     }
   }
 

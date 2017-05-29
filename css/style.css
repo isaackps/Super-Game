@@ -48,3 +48,8 @@ text-align: center;
 .gameHeight {
   height: 500px;
 }
+
+.alien {
+  height: 60px;
+  display: inline;
+}
