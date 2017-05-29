@@ -103,7 +103,7 @@ var Game = function() {
 
   //startup the game
   function init() {
-    setupEvent();
+    setupEvents();
   }
 
   //the render function. It will be called 60/sec
@@ -133,4 +133,4 @@ var Game = function() {
 
 }
 
-//var g = new Game();
+var g = new Game();
