@@ -1,3 +1,6 @@
+body {
+  background-color: lightgrey;
+}
 h1 {
 text-align: center;
 }
@@ -13,7 +16,7 @@ text-align: center;
 #P1Screen {
   margin: 0;
   height: 500px;
-  width: 450px;
+  width: 457.5px;
   background-color: #151B54;
   border-color: black;
   border-radius: 1%;
@@ -24,7 +27,7 @@ text-align: center;
 #P2Screen {
   margin:0;
   height: 500px;
-  width: 450px;
+  width: 457.5px;
   background-color: #151B54;
   border-radius: 1%;
   border: 5px solid black;

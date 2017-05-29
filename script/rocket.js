@@ -26,8 +26,8 @@ var rocket = function(settings) {
       rocketElement.style.left = (w-parseInt(rocketElement.style.width)) + 'px';
     }
 
-    if(x_left < 0){
-      rocketElement.style.left = '0px';
+    if(x_left < 8){
+      rocketElement.style.left = '8px';
     }
 
   }
@@ -81,4 +81,5 @@ var rocket = function(settings) {
   }
 
   init();
+
 }
