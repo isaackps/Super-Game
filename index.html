@@ -37,16 +37,26 @@
      <!--Game Row-->
       <div class="row gameRow">
         <div class="col-md-4 col-md-offset-1">
-          <!--Player 1 screen--><!--Player 1 Left side-->
-          <div id="P1Screen"></div>
-          <!--Player 1 Rocket-->
-          <div id="P1Rocket"></div>
-        </div>
+          <!--Player 2 screen--><!--Player 2 Left side-->
+          <div class="screen" id="P2Screen"></div>
+          <!--put player in bootsrtap grid to make it appear inside the screen-->
+          <div class="row">
+            <div class="col-md-2 col-ms-offset-2">
+              <!--Player 2 Rocket-->
+              <div><img src="images/spaceShipWhite.png" id="P2Rocket"/></div>
+            </div>
+          </div>
+          </div>
         <div class="col-md-4 col-md-offset-1">
-          <!--Player 2 screen--><!--Player 2 Right side-->
-          <div id="P2Screen"></div>
-          <!--Player 2 Rocket-->
-          <div id="P2Rocket"></div>
+          <!--Player 1 screen--><!--Player 1 Right side-->
+          <div class="screen" id="P1Screen"></div>
+          <!--put player in bootsrtap grid to make it appear inside the screen-->
+          <div class="row gameHeight">
+            <div class="col-md-2 col-ms-offset-2">
+              <!--Player 1 Rocket-->
+              <div><img src="images/spaceShipWhite.png" id="P1Rocket"/></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
