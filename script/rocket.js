@@ -64,6 +64,7 @@ var rocket = function(settings) {
     }
   }
 
+
   function init() {
     //create object at the start of the game.
     //to initialise the object.
