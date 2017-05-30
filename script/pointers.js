@@ -53,8 +53,9 @@ var pointers = function(settings) {
       objects1.push(randomObjects1);
       //set time interval so that it will have a delay before it create the next object
       setTimeout(spawnRandomObject1, 1500);
-    }
+
     setTimeout(removeObject1, 30000);
+  }
 
     //spawn random object to right screen
     function spawnRandomObject2() {
@@ -100,7 +101,7 @@ var pointers = function(settings) {
   }
   //detect the distance and 'collect' the object
   function detection1() {
-    
+
   }
 
 
