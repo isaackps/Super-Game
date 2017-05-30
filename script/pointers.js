@@ -33,7 +33,7 @@ var pointers = function(settings) {
       var spawnX1 = getRandomInt(5, 485);
       //spawn object at random left
       var spawnY1 = getRandomInt(20,457);
-      console.log('spawn random object')
+      //console.log('spawn random object')
       var randomObjects1 = document.createElement("div");
       //create the position for the object created
       randomObjects1.style.position = "absolute";
@@ -54,6 +54,7 @@ var pointers = function(settings) {
       //set time interval so that it will have a delay before it create the next object
       setTimeout(spawnRandomObject1, 1500);
     }
+    setTimeout(removeObject1, 30000);
 
     //spawn random object to right screen
     function spawnRandomObject2() {
@@ -61,7 +62,7 @@ var pointers = function(settings) {
       var spawnX2 = getRandomInt(5, 485);
       //spawn object at random left
       var spawnY2 = getRandomInt(20,457);
-      console.log('spawn random object')
+      //console.log('spawn random object')
       var randomObjects2 = document.createElement("div");
       //create the position for the object created
       randomObjects2.style.position = "absolute";
@@ -81,22 +82,30 @@ var pointers = function(settings) {
       objects2.push(randomObjects2);
       //set time interval so that it will have a delay before it create the next object
       setTimeout(spawnRandomObject2, 1500);
+
+      setTimeout(removeObject2, 30000);
     }
-
-
-
+  }//createRandom closer
+  //remove object if its too long on the screen
+  function removeObject1() {
+    var firstArrayEle1 = objects1[0];
+    document.getElementById('alien1').removeChild(firstArrayEle1);
+    objects1.splice(0,1);
+  }
+  //remove object if its too long on th screen
+  function removeObject2() {
+    var firstArrayEle2 = objects2[0];
+    document.getElementById('alien2').removeChild(firstArrayEle2);
+    objects2.splice(0,1);
+  }
+  //detect the distance and 'collect' the object
+  function detection1() {
+    
   }
 
-  //for every interval create a new random object
-  // get the elapsed time
-    // var time = Date.now();
-    // console.log(time);
-    // var time2 = time - 100000;
-    // see if its time to spawn a new object
-    // while (spawnRate > 0 ) {
-    //   spawnRate += lastSpawn*5;
-    //
-    // }
+
+
+
 
 createRandom();
 
