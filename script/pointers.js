@@ -44,7 +44,7 @@ var pointers = function(settings) {
       randomObjects1.style.height = "10px";
       randomObjects1.style.backgroundColor = "white";
       //create the id for the object created
-      randomObjects1.id = "randomObjects-"+objId1;
+      randomObjects1.id = "randomObjects1-"+objId1;
       //append the element to html so that it will appear on screen
       document.getElementById('alien1').appendChild(randomObjects1);
       //increase objid so next object will be different id
@@ -74,7 +74,7 @@ var pointers = function(settings) {
       randomObjects2.style.height = "10px";
       randomObjects2.style.backgroundColor = "white";
         //create the id for the object created
-      randomObjects2.id = "randomObjects-"+objId2;
+      randomObjects2.id = "randomObjects2-"+objId2;
         //append the element to html so that it will appear on screen
       document.getElementById('alien2').appendChild(randomObjects2);
       //increase objid so next object will be different id

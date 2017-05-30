@@ -1,8 +1,17 @@
 body {
   background-color: lightgrey;
 }
-h1 {
-text-align: center;
+h6 {
+  font-size: 30px;
+
+}
+/*set attribute for game title*/
+#gameTitle {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.scoreRow {
+  height: 150px;
 }
 /*set height for titleRow*/
 .titleRow {
