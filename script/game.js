@@ -32,6 +32,8 @@ var Game = function() {
       godmode: false,
   }));
 
+  setTimeout(function(){assets.push(new pointers())}, frame);
+
   //world settings
   var frame = 0;                //Frames since the start of the game
 

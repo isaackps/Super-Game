@@ -3,6 +3,8 @@ var obsticle = function(settings) {
     //settings
     var alienElement1 = document.getElementById('alien1');
     var alienElement2 = document.getElementById('alien2');
+    var alien = null;
+
 
     //movement of the obsticle element
     function moving() {
@@ -30,12 +32,14 @@ var obsticle = function(settings) {
       }
 
       //create a row of alienSpeed
-      function createRow(noOfAlien) {
-        for (var i = 0; i < noOfAlien; i++) {
-          create();
-        }
-      }
+      // function createRow(noOfAlien) {
+      //   for (var i = 0; i < noOfAlien; i++) {
+      //     create();
+      //   }
+      // }
 
+
+//create(1);
 
 
 
@@ -43,5 +47,5 @@ var obsticle = function(settings) {
       moving();
     }
 
-createRow(4);
+//createRow(4);
 }
