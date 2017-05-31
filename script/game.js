@@ -5,6 +5,12 @@ var Game = function() {
   //so player 1 and 2 will have different interactions
   var interactionsArr = [];
   var noOfPlayers = 2;
+  //set up array to take in the pointers
+  var pointer2Arr = [];
+  var pointer1Arr = [];
+
+
+function startGame() {
 
   for(var i = 0; i < noOfPlayers; i++) {
     //set values for rocket
@@ -25,6 +31,8 @@ var Game = function() {
       right: false
     };
   }
+
+  //var space = false;
   //to add obsticle into the assets
   assets.push(new obsticle( {
       alienSpeed: 8,
@@ -32,7 +40,34 @@ var Game = function() {
       godmode: false,
   }));
 
-  setTimeout(function(){assets.push(new pointers())}, frame);
+  assets.push(new pointers());
+}
+
+
+
+
+
+CollisionDetect();
+//Collision detection
+function CollisionDetect () {
+
+for (var i = 0; i < window.objects1.length; i++) {
+  if(rocket1.style.top === window.objects1[i].style.top && rocket1.style.left === window.objects1[i].style.left) {
+    console.log('hit');
+  }
+
+
+
+}
+
+
+
+
+
+}
+
+
+
 
   //world settings
   var frame = 0;                //Frames since the start of the game
@@ -113,6 +148,8 @@ var Game = function() {
   //startup the game
   function init() {
     setupEvents();
+    //when start game will load the function start game;
+    startGame();
   }
 
   //the render function. It will be called 60/sec
@@ -127,6 +164,9 @@ var Game = function() {
       }
     }
     frame++;
+  //  console.log(window.objects1);
+  //  console.log(window.objects2);
+  console.log(rocket1.style.top, rocket1.style.left);
   }
 
   var self = this;
@@ -149,5 +189,18 @@ var Game = function() {
           init();
 
 }
+
+
+
+// $('.body').on('keydown', '*', function(event){
+//   var keyName = event.key;
+//
+// console.log(keyName)
+//   if (keyName == "space") {
+//         var g = new Game();
+//       }
+//
+// })
+
 
 var g = new Game();

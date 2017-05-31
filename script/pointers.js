@@ -6,9 +6,10 @@ var pointers = function(settings) {
   //object id for right objects
   var objId2 = 0;
   //this array holds all spawned object for left screen
-  var objects1 = [];
+  window.objects1 = [];
+  //this.objects1 = objects1;
   //this array holds all spawned object for right screen
-  var objects2 = [];
+  window.objects2 = [];
   //spawn a new object every 1000ms
   var spawnRate = 1000;
   //when was teh last object spawned
@@ -112,7 +113,7 @@ createRandom();
 
 
   this.render = function() {
-
+    console.log(objects1[0].style.left, objects1[0].style.top);
 
 
   }

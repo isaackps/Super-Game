@@ -47,8 +47,8 @@ var obsticle = function(settings) {
         alienElement1.appendChild(randomAlien1);
         alienId1++;
         alienArr1.push(randomAlien1);
-        console.log(spawnAX1,spawnAY1);
-        console.log(randomAlien1.style.left, randomAlien1.style.top)
+        //console.log(spawnAX1,spawnAY1);
+        //console.log(randomAlien1.style.left, randomAlien1.style.top)
 
         setTimeout(spawnAlien1, 4500);
         setTimeout(removeAlien1, 20000);
@@ -70,8 +70,8 @@ var obsticle = function(settings) {
         alienElement2.appendChild(randomAlien2);
         alienId2++;
         alienArr2.push(randomAlien2);
-        console.log(spawnAX2,spawnAY2);
-        console.log(randomAlien2.style.left, randomAlien2.style.top)
+      //  console.log(spawnAX2,spawnAY2);
+        //console.log(randomAlien2.style.left, randomAlien2.style.top)
 
         setTimeout(spawnAlien2, 4500);
         setTimeout(removeAlien2, 20000);

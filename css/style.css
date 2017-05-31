@@ -3,15 +3,17 @@ body {
 }
 h6 {
   font-size: 30px;
-
+}
+.titleRow2 {
+  height: 170px;
 }
 /*set attribute for game title*/
 #gameTitle {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 .scoreRow {
-  height: 150px;
+  height: 50px;
 }
 /*set height for titleRow*/
 .titleRow {
