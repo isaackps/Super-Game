@@ -13,8 +13,8 @@ var Rocket = function(settings) {
     var y_bottom = parseInt(self.rocketElement.style.top) + parseInt(self.rocketElement.style.height);
 
     //size of the player screen so it will be inside the screen
-    var w = 450;
-    var h = 500;
+    var w = 440;
+    var h = 490;
 
     if(y_bottom > h){
       self.rocketElement.style.top = (h-parseInt(self.rocketElement.style.height)) + 'px';

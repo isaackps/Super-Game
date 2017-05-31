@@ -3,6 +3,7 @@ var Game = function() {
   // Game Settings
   var settings = {};
   settings.numberOfStars = 20;
+  settings.numberOfAliens = 3;
 
   // Game Environment
   this.assets = [];
@@ -33,6 +34,10 @@ var Game = function() {
   // Aliens
   var alien_player1 = [];
   var alien_player2 = [];
+
+  //Scores
+  var score1 = 0;
+  var score2 = 0;
 
   // Setup Events
   function setupEvents(){
@@ -109,7 +114,7 @@ var Game = function() {
 
     // Collision detection
     function CollisionDetect () {
-
+      //with the star objects
       if(player1.rocketElement === null){
         return;
       }
@@ -130,12 +135,60 @@ var Game = function() {
 
             starElement.remove();
             stars_player1.splice(i,1);
+            scorePoints();
 
         }
 
       }
+
+      //with the Aliens
+      for (var j = 0; j < alien_player1.length; j++){
+        var alienElement = alien_player1[j].alienElement;
+
+
+        var alienRect = alienElement.getBoundingClientRect();
+        if (player1Rect.left < alienRect.left + alienRect.width &&
+            player1Rect.left + player1Rect.width > alienRect.left &&
+            player1Rect.top < alienRect.top + alienRect.height &&
+            player1Rect.height + player1Rect.top > alienRect.top) {
+
+            console.log('boom gameover');
+          }
+        }
+    }//end of collision detection
+
+  //create a new star when collected one
+  function createNewStar() {
+    if (stars_player1.length < settings.numberOfStars) {
+      stars_player1.push(new Star('player1'));
+    }
+  }
+
+  //move the Aliens
+  function moveAlien() {
+    if (frame%180 === 0) {
+      var alienElement = alien_player1[0].alienElement;
+      alienElement.remove();
+      alien_player1.splice(0,1);
     }
 
+    if (alien_player1.length < settings.numberOfAliens) {
+      alien_player1.push(new Alien('player1'));
+    }
+  }
+
+  //score points
+  function scorePoints() {
+    score1 += 10;
+    if (score1 < 100) {
+    document.getElementById('scoreP1').innerHTML = "0000"+score1;
+    } else if (score1 < 1000) {
+        document.getElementById('scoreP1').innerHTML = "000"+score1;
+      }else if (score1 < 10000) {
+          document.getElementById('scoreP1').innerHTML = "00"+score1;
+        }
+
+  }
 
     // reset game
     function resetGame(){
@@ -162,6 +215,11 @@ var Game = function() {
          stars_player1.push(new Star('player1'));
        }
 
+       for(var i =0; i<settings.numberOfAliens; i++) {
+         alien_player1.push(new Alien('player1'));
+       }
+
+
     }
 
 
@@ -182,8 +240,8 @@ var Game = function() {
 
     player1.render(interactions,'player1');
     CollisionDetect();
-
-
+    createNewStar();
+    moveAlien();
     frame++;
   }
 
