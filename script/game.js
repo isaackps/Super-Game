@@ -1,176 +1,196 @@
 var Game = function() {
 
-  //Game Settings
-  var assets = [];
-  //so player 1 and 2 will have different interactions
-  var interactionsArr = [];
-  var noOfPlayers = 2;
-  //set up array to take in the pointers
-  var pointer2Arr = [];
-  var pointer1Arr = [];
+  // Game Settings
+  var settings = {};
+  settings.numberOfStars = 20;
 
-
-function startGame() {
-
-  for(var i = 0; i < noOfPlayers; i++) {
-    //set values for rocket
-    assets[i] = new rocket({
-      rocketSpeed: 8,
-      walls: true,
-      automatic: false,
-      godmode: false,
-      id: "rocket"+ (i+1)
-
-    });
-
-    //interactions set to false until key pressed
-    interactionsArr[i] = {
-      up: false,
-      down: false,
-      left: false,
-      right: false
-    };
-  }
-
-  //var space = false;
-  //to add obsticle into the assets
-  assets.push(new obsticle( {
-      alienSpeed: 8,
-      walls: true,
-      godmode: false,
-  }));
-
-  assets.push(new pointers());
-}
-
-
-
-
-
-CollisionDetect();
-//Collision detection
-function CollisionDetect () {
-
-for (var i = 0; i < window.objects1.length; i++) {
-  if(rocket1.style.top === window.objects1[i].style.top && rocket1.style.left === window.objects1[i].style.left) {
-    console.log('hit');
-  }
-
-
-
-}
-
-
-
-
-
-}
-
-
-
-
-  //world settings
+  // Game Environment
+  this.assets = [];
+  var interactions = {
+      player1: {
+        right: false,
+        left: false,
+        up: false,
+        down: false
+      },
+      player2: {
+        right: false,
+        left: false,
+        up: false,
+        down: false
+      }
+  };
   var frame = 0;                //Frames since the start of the game
 
-  //setup event listeners
-  function setupEvents() {
+  // Players
+  var player1 = null;
+  var player2 = null;
+
+  // Stars
+  var stars_player1 = [];
+  var stars_player2 = [];
+
+  // Aliens
+  var alien_player1 = [];
+  var alien_player2 = [];
+
+  // Setup Events
+  function setupEvents(){
+
     //add event listener to listen to up key so when key is lifted nothing happens
     document.addEventListener('keyup', function(event){
       var keyName = event.key;
 
       switch(keyName) {
-        case "ArrowRight":
-            interactionsArr[0].right = false;
-            break;
-        case "ArrowLeft":
-            interactionsArr[0].left = false;
-            break;
-        case "ArrowUp":
-            interactionsArr[0].up = false;
-            break;
-        case "ArrowDown":
-            interactionsArr[0].down = false;
-            break;
-        case "w":
-            interactionsArr[1].up = false;
-            break;
-        case "a":
-            interactionsArr[1].left = false;
-            break;
-        case "s":
-            interactionsArr[1].down = false;
-            break;
-        case "d":
-            interactionsArr[1].right = false;
-            break;
-      default:
-        break;
+          case "ArrowRight":
+              interactions.player1.right = false;
+              break;
+          case "ArrowLeft":
+              interactions.player1.left = false;
+              break;
+          case "ArrowUp":
+              interactions.player1.up = false;
+              break;
+          case "ArrowDown":
+              interactions.player1.down = false;
+              break;
+          case "w":
+              interactions.player2.up = false;
+              break;
+          case "a":
+              interactions.player2.left = false;
+              break;
+          case "s":
+              interactions.player2.down = false;
+              break;
+          case "d":
+              interactions.player2.right = false;
+              break;
+        default:
+          break;
+        }
+      });
+
+      //add event listener to listen to key down so when pressed something happens
+      document.addEventListener('keydown', function(event){
+        var keyName = event.key;
+
+        switch(keyName) {
+          case "ArrowRight":
+              interactions.player1.right = true;
+              break;
+          case "ArrowLeft":
+              interactions.player1.left = true;
+              break;
+          case "ArrowUp":
+              interactions.player1.up = true;
+              break;
+          case "ArrowDown":
+              interactions.player1.down = true;
+              break;
+          case "w":
+              interactions.player2.up = true;
+              break;
+          case "a":
+              interactions.player2.left = true;
+              break;
+          case "s":
+              interactions.player2.down = true;
+              break;
+          case "d":
+              interactions.player2.right = true;
+              break;
+        default:
+          break;
+        }
+
+      });
+    }
+
+    // Collision detection
+    function CollisionDetect () {
+
+      if(player1.rocketElement === null){
+        return;
       }
-    });
 
-    //add event listener to listen to key down so when pressed something happens
-    document.addEventListener('keydown', function(event){
-      var keyName = event.key;
+      var player1Rect = player1.rocketElement.getBoundingClientRect();
+      for(var i = 0; i<stars_player1.length;i++){
+        var starElement = stars_player1[i].starElement;
 
-      switch(keyName) {
-        case "ArrowRight":
-            interactionsArr[0].right = true;
-            break;
-        case "ArrowLeft":
-            interactionsArr[0].left = true;
-            break;
-        case "ArrowUp":
-            interactionsArr[0].up = true;
-            break;
-        case "ArrowDown":
-            interactionsArr[0].down = true;
-            break;
-        case "w":
-            interactionsArr[1].up = true;
-            break;
-        case "a":
-            interactionsArr[1].left = true;
-            break;
-        case "s":
-            interactionsArr[1].down = true;
-            break;
-        case "d":
-            interactionsArr[1].right = true;
-            break;
-      default:
-        break;
+        if(starElement == null){
+          continue;
+        }
+
+        var starRect = starElement.getBoundingClientRect();
+        if (player1Rect.left < starRect.left + starRect.width &&
+            player1Rect.left + player1Rect.width > starRect.left &&
+            player1Rect.top < starRect.top + starRect.height &&
+            player1Rect.height + player1Rect.top > starRect.top) {
+
+            starElement.remove();
+            stars_player1.splice(i,1);
+
+        }
+
       }
-    });
+    }
 
 
-  }
+    // reset game
+    function resetGame(){
+
+      player1 = new Rocket({
+                          rocketSpeed: 8,
+                          walls: true,
+                          automatic: false,
+                          godmode: false,
+                          id: "rocket1"
+                        });
+
+      /*
+      player2 = new Rocket({
+                          rocketSpeed: 8,
+                          walls: true,
+                          automatic: false,
+                          godmode: false,
+                          id: "rocket2"
+                        });
+      */
+
+       for(var i =0; i<settings.numberOfStars; i++){
+         stars_player1.push(new Star('player1'));
+       }
+
+    }
+
+
+
+
+
 
   //startup the game
   function init() {
+    resetGame();
     setupEvents();
-    //when start game will load the function start game;
-    startGame();
   }
+
+  init();
 
   //the render function. It will be called 60/sec
   this.render = function() {
-    //for each assets it has this own interactions
-    for(var i = 0; i < assets.length; i++){
-      if(i < 2){
-        assets[i].render(interactionsArr[i]);
-      }
-      else{
-        assets[i].render();
-      }
-    }
+
+    player1.render(interactions,'player1');
+    CollisionDetect();
+
+
     frame++;
-  //  console.log(window.objects1);
-  //  console.log(window.objects2);
-  console.log(rocket1.style.top, rocket1.style.left);
   }
 
+  /*
+   *  Game loop. Do not touch ;-)
+   */
   var self = this;
-
   window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame       ||
             window.webkitRequestAnimationFrame ||
@@ -180,27 +200,10 @@ for (var i = 0; i < window.objects1.length; i++) {
             };
           })();
 
-
           (function animloop(){
             requestAnimFrame(animloop);
             self.render();
           })();
-
-          init();
-
 }
-
-
-
-// $('.body').on('keydown', '*', function(event){
-//   var keyName = event.key;
-//
-// console.log(keyName)
-//   if (keyName == "space") {
-//         var g = new Game();
-//       }
-//
-// })
-
 
 var g = new Game();

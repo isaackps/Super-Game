@@ -4,7 +4,7 @@ var obsticle = function(settings) {
     var alienElement1 = document.getElementById('alien1');
     var alienElement2 = document.getElementById('alien2');
     //arrays to hold the spawned alien
-    var alienArr1 = [];
+    this.alienArr1 = [];
     var alienArr2 = [];
 
     var alienId1 = 0;
@@ -46,7 +46,7 @@ var obsticle = function(settings) {
         randomAlien1.id = "randomAlien1-"+alienId1;
         alienElement1.appendChild(randomAlien1);
         alienId1++;
-        alienArr1.push(randomAlien1);
+        this.alienArr1.push(randomAlien1);
         //console.log(spawnAX1,spawnAY1);
         //console.log(randomAlien1.style.left, randomAlien1.style.top)
 
@@ -81,9 +81,9 @@ var obsticle = function(settings) {
 
     //remove alien if its too long on the screen
     function removeAlien1() {
-      var firstArrayEle1 = alienArr1[0];
+      var firstArrayEle1 = this.alienArr1[0];
       document.getElementById('alien1').removeChild(firstArrayEle1);
-      alienArr1.splice(0,1);
+      this.alienArr1.splice(0,1);
     }
     //remove alien if its too long on the screen
     function removeAlien2() {

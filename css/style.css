@@ -32,7 +32,7 @@ h6 {
   border-color: black;
   border-radius: 1%;
   border: 5px solid black;
-  position: absolute;
+  position: relative;
 }
 /*details and position of the 2nd screen*/
 #P2Screen {
@@ -66,4 +66,15 @@ h6 {
 .alien {
   height: 60px;
   display: inline;
+}
+
+
+
+/* Star */
+.star {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: white;
+
 }

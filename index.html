@@ -6,11 +6,6 @@
    <!-- Bootstrap core CSS -->
    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-   <!--[if lt IE 9]>
-     <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
-     <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-   <![endif]-->
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,15 +55,10 @@
           </div>
         <div class="col-md-5 col-md-offset-1">
           <!--Player 1 screen--><!--Player 1 Right side-->
-          <div class="screen" id="P1Screen"></div>
-          <!--put player in bootsrtap grid to make it appear inside the screen-->
-          <div class="row gameHeight">
-            <div class="col-md-12">
-              <!--Player 1 Rocket-->
-              <div id="alien1">
-                <img src="images/spaceShipWhite.png" id="rocket1"/>
-              </div>
-            </div>
+          <div class="screen" id="P1Screen">
+            <div id="alien1"></div>
+            <img src="images/spaceShipWhite.png" id="rocket1"/>
+
           </div>
         </div>
       </div>
@@ -79,7 +69,7 @@
 
     <!--attach the scripts-->
    <script type="text/javascript" src="script/jquery.min.js"></script>
-   <script type="text/javascript" src="script/pointers.js"></script>
+   <script type="text/javascript" src="script/star.js"></script>
    <script type="text/javascript" src="script/obsticle.js"></script>
    <script type="text/javascript" src="script/rocket.js"></script>
    <script type="text/javascript" src="script/game.js"></script>
