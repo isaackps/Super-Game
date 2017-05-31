@@ -3,6 +3,7 @@ var Rocket = function(settings) {
 
   //Settings
   self.rocketElement = null;
+  self.rocketElement2 = null;
 
 
   //create wall detection
