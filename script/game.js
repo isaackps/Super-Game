@@ -289,7 +289,7 @@ var Game = function() {
        for(var i =0; i<settings.numberOfAliens; i++) {
          alien_player1.push(new Alien('player1'));
          alien_player2.push(new Alien('player2'));
-       }
+       } 
     }
 
   function checkGameOver() {
