@@ -156,31 +156,32 @@ var Game = function() {
           }
         }
         //player2
-        // var player2Rect = player2.rocketElement.getBoundingClientRect();
-        // for(var k = 0; k<stars_player2.length;k++){
-        //   var starElement2 = stars_player2[i].starElement2;
-        //
-        //   if(starElement2 == null){
-        //     continue;
-        //   }
-        //
-        //   var starRect2 = starElement2.getBoundingClientRect();
-        //   if (player2Rect.left < starRect2.left + starRect2.width &&
-        //       player2Rect.left + player2Rect.width > starRect2.left &&
-        //       player2Rect.top < starRect2.top + starRect2.height &&
-        //       player2Rect.height + player2Rect.top > starRect2.top) {
-        //
-        //       starElement2.remove();
-        //       stars_player2.splice(i,1);
-        //       //scorePoints();
-        //
-        //   }
-        //
-        // }
-        //
-        // //with the Aliens
+        var player2Rect = player2.rocketElement.getBoundingClientRect();
+
+         for(var k = 0; k<stars_player2.length;k++){
+           var starElement2 = stars_player2[k].starElement;
+
+           if(starElement2 == null){
+             continue;
+           }
+
+           var starRect2 = starElement2.getBoundingClientRect();
+           if (player2Rect.left < starRect2.left + starRect2.width &&
+               player2Rect.left + player2Rect.width > starRect2.left &&
+              player2Rect.top < starRect2.top + starRect2.height &&
+               player2Rect.height + player2Rect.top > starRect2.top) {
+
+               starElement2.remove();
+               stars_player2.splice(i,1);
+               //scorePoints();
+
+           }
+
+         }
+
+      //   with the Aliens
         // for (var l = 0; l < alien_player2.length; l++){
-        //   var alienElement2 = alien_player2[j].alienElement2;
+        //   var alienElement2 = alien_player2[l].alienElement;
         //
         //
         //   var alienRect2 = alienElement2.getBoundingClientRect();
@@ -192,7 +193,7 @@ var Game = function() {
         //       console.log('boom 2 gameover');
         //     }
         //   }
-    }//end of collision detection
+    };//end of collision detection
 
   //create a new star when collected one
   function createNewStar() {
