@@ -144,8 +144,6 @@ var Game = function() {
       //with the Aliens
       for (var j = 0; j < alien_player1.length; j++){
         var alienElement = alien_player1[j].alienElement;
-
-
         var alienRect = alienElement.getBoundingClientRect();
         if (player1Rect.left < alienRect.left + alienRect.width &&
             player1Rect.left + player1Rect.width > alienRect.left &&
@@ -175,14 +173,11 @@ var Game = function() {
               scorePoints2();
 
           }
-
         }
 
         //with the Aliens
         for (var l = 0; l < alien_player2.length; l++){
           var alienElement2 = alien_player2[l].alienElement;
-
-
           var alienRect2 = alienElement2.getBoundingClientRect();
           if (player2Rect.left < alienRect2.left + alienRect2.width &&
               player2Rect.left + player2Rect.width > alienRect2.left &&
@@ -199,8 +194,6 @@ var Game = function() {
     if (stars_player1.length < settings.numberOfStars) {
       stars_player1.push(new Star('player1'));
     }
-  }
-  function createNewStar2() {
     if (stars_player2.length < settings.numberOfStars) {
       stars_player2.push(new Star('player2'));
     }
@@ -260,7 +253,6 @@ var Game = function() {
                           id: "rocket1"
                         });
 
-
       player2 = new Rocket({
                           rocketSpeed: 8,
                           walls: true,
@@ -268,7 +260,6 @@ var Game = function() {
                           godmode: false,
                           id: "rocket2"
                         });
-
 
        for(var i =0; i<settings.numberOfStars; i++){
          stars_player1.push(new Star('player1'));
@@ -279,14 +270,7 @@ var Game = function() {
          alien_player1.push(new Alien('player1'));
          alien_player2.push(new Alien('player2'));
        }
-
-
     }
-
-
-
-
-
 
   //startup the game
   function init() {
@@ -303,7 +287,6 @@ var Game = function() {
     player2.render(interactions,'player2');
     CollisionDetect();
     createNewStar();
-    createNewStar2();
     moveAlien();
     frame++;
   }

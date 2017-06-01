@@ -19,6 +19,7 @@ function Star(currentPlayer){
       self.starElement.classList.add('star');
       self.starElement.style.top = getRandomInt(5,gameBoardRect.width-15) + 'px';
       self.starElement.style.left = getRandomInt(5,gameBoardRect.width-15)  + 'px';
+
     }else if (currentPlayer === "player2") {
 
       var gameBoard2 = document.getElementById('P2Screen');
