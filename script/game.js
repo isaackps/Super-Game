@@ -50,9 +50,13 @@ var Game = function() {
   //game counter
   var gameCounter = 0;
 
-//checker for gameover
+  //checker for gameover
   var gameOverCounter1 = 0;
   var gameOverCounter2 = 0;
+
+  //sound effects
+  var collectP = document.getElementById('collectP');
+  var gameOverAudio = document.getElementById('gameOverAudio');
 
   // Setup Events
   function setupEvents(){
@@ -151,10 +155,11 @@ var Game = function() {
             player1Rect.left + player1Rect.width > starRect.left &&
             player1Rect.top < starRect.top + starRect.height &&
             player1Rect.height + player1Rect.top > starRect.top) {
-
             starElement.remove();
             stars_player1.splice(i,1);
+            collectP.play();
             scorePoints();
+
 
         }
 
@@ -167,7 +172,7 @@ var Game = function() {
             player1Rect.left + player1Rect.width > alienRect.left &&
             player1Rect.top < alienRect.top + alienRect.height &&
             player1Rect.height + player1Rect.top > alienRect.top) {
-
+              gameOverAudio.play();
             gameOverCounter1 = 1;
           }
         }
@@ -185,9 +190,9 @@ var Game = function() {
               player2Rect.left + player2Rect.width > starRect2.left &&
               player2Rect.top < starRect2.top + starRect2.height &&
               player2Rect.height + player2Rect.top > starRect2.top) {
-
               starElement2.remove();
               stars_player2.splice(k,1);
+              collectP.play();
               scorePoints2();
 
           }
@@ -201,7 +206,7 @@ var Game = function() {
               player2Rect.left + player2Rect.width > alienRect2.left &&
               player2Rect.top < alienRect2.top + alienRect2.height &&
               player1Rect.height + player2Rect.top > alienRect2.top) {
-
+              gameOverAudio.play();
               gameOverCounter2 = 1;
             }
           }
@@ -289,7 +294,7 @@ var Game = function() {
        for(var i =0; i<settings.numberOfAliens; i++) {
          alien_player1.push(new Alien('player1'));
          alien_player2.push(new Alien('player2'));
-       } 
+       }
     }
 
   function checkGameOver() {
@@ -301,7 +306,6 @@ var Game = function() {
   }
   function checkGameOver2() {
     if (frame%15 === 0) {
-      console.log('gameOverCounter2');
       if (gameOverCounter2 !== 0) {
         gameOver2();
       }
