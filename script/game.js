@@ -35,9 +35,24 @@ var Game = function() {
   var alien_player1 = [];
   var alien_player2 = [];
 
+  //game over array
+  var gameOver_player1 = [];
+  var gameOver_player2 = [];
+
+  //restart btn array
+  var restartBtn_player1 = [];
+  var restartBtn_player2 = [];
+
   //Scores
   var score1 = 0;
   var score2 = 0;
+
+  //game counter
+  var gameCounter = 0;
+
+//checker for gameover
+  var gameOverCounter1 = 0;
+  var gameOverCounter2 = 0;
 
   // Setup Events
   function setupEvents(){
@@ -110,6 +125,9 @@ var Game = function() {
         }
 
       });
+
+
+
     }
 
     // Collision detection
@@ -150,7 +168,7 @@ var Game = function() {
             player1Rect.top < alienRect.top + alienRect.height &&
             player1Rect.height + player1Rect.top > alienRect.top) {
 
-            console.log('boom gameover');
+            gameOverCounter1 = 1;
           }
         }
         //player2
@@ -184,7 +202,7 @@ var Game = function() {
               player2Rect.top < alienRect2.top + alienRect2.height &&
               player1Rect.height + player2Rect.top > alienRect2.top) {
 
-              console.log('boom 2 gameover');
+              gameOverCounter2 = 1;
             }
           }
     }//end of collision detection
@@ -201,7 +219,7 @@ var Game = function() {
 
   //move the Aliens
   function moveAlien() {
-    if (frame%180 === 0) {
+    if (frame%120 === 0) {
       var alienElement = alien_player1[0].alienElement;
       alienElement.remove();
       alien_player1.splice(0,1);
@@ -244,7 +262,9 @@ var Game = function() {
 
     // reset game
     function resetGame(){
-
+      score1 = 0;
+      score2 = 0;
+      gameCounter = 0;
       player1 = new Rocket({
                           rocketSpeed: 8,
                           walls: true,
@@ -272,14 +292,63 @@ var Game = function() {
        }
     }
 
+  function checkGameOver() {
+    if (frame%15 === 0) {
+      if (gameOverCounter1 !== 0) {
+        gameOver();
+      }
+    }
+  }
+  function checkGameOver2() {
+    if (frame%15 === 0) {
+      console.log('gameOverCounter2');
+      if (gameOverCounter2 !== 0) {
+        gameOver2();
+      }
+    }
+  }
+    function gameOver() {
+      //add the game over image
+      var go = document.createElement('IMG');
+      go.setAttribute("src", "images/gameOver.jpg");
+      var goBoard = document.getElementById('P1Screen');
+      goBoard.append(go);
+      go.classList.add('gameOver');
+      gameOver_player1.push(go);
+      //remove the game over image
+      if(gameOver_player1.length > 1) {
+        var goElement = gameOver_player1[0];
+        goElement.remove();
+        gameOver_player1.splice(0,1);
+      }
+      gameCounter++;
+    }
+    function gameOver2() {
+      //add the game over image
+      var go = document.createElement('IMG');
+      go.setAttribute("src", "images/gameOver.jpg");
+      var goBoard = document.getElementById('P2Screen');
+      goBoard.append(go);
+      go.classList.add('gameOver');
+      gameOver_player2.push(go);
+      //remove the game over image
+      if(gameOver_player2.length > 1) {
+        var goElement = gameOver_player2[0];
+        goElement.remove();
+        gameOver_player2.splice(0,1);
+      }
+      gameCounter++;
+    }
+
   //startup the game
   function init() {
     resetGame();
     setupEvents();
   }
 
+if (gameCounter === 0) {
   init();
-
+}
   //the render function. It will be called 60/sec
   this.render = function() {
 
@@ -288,6 +357,8 @@ var Game = function() {
     CollisionDetect();
     createNewStar();
     moveAlien();
+    checkGameOver();
+    checkGameOver2();
     frame++;
   }
 
@@ -311,3 +382,8 @@ var Game = function() {
 }
 
 var g = new Game();
+
+//add event listener to listen to reset button
+document.getElementById('restartBtn').addEventListener('click', function(){
+  location.reload();
+});

@@ -84,3 +84,16 @@ h6 {
   height: 55px;
 
 }
+
+.gameOver {
+  position: absolute;
+  left: -5px;
+}
+
+#restartBtn {
+  height: 90px;
+}
+
+p {
+  font-size: 25px;
+}
