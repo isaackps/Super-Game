@@ -156,48 +156,53 @@ var Game = function() {
           }
         }
         //player2
-        // var player2Rect = player2.rocketElement.getBoundingClientRect();
-        // for(var k = 0; k<stars_player2.length;k++){
-        //   var starElement2 = stars_player2[i].starElement2;
-        //
-        //   if(starElement2 == null){
-        //     continue;
-        //   }
-        //
-        //   var starRect2 = starElement2.getBoundingClientRect();
-        //   if (player2Rect.left < starRect2.left + starRect2.width &&
-        //       player2Rect.left + player2Rect.width > starRect2.left &&
-        //       player2Rect.top < starRect2.top + starRect2.height &&
-        //       player2Rect.height + player2Rect.top > starRect2.top) {
-        //
-        //       starElement2.remove();
-        //       stars_player2.splice(i,1);
-        //       //scorePoints();
-        //
-        //   }
-        //
-        // }
-        //
-        // //with the Aliens
-        // for (var l = 0; l < alien_player2.length; l++){
-        //   var alienElement2 = alien_player2[j].alienElement2;
-        //
-        //
-        //   var alienRect2 = alienElement2.getBoundingClientRect();
-        //   if (player2Rect.left < alienRect2.left + alienRect2.width &&
-        //       player2Rect.left + player2Rect.width > alienRect2.left &&
-        //       player2Rect.top < alienRect2.top + alienRect2.height &&
-        //       player1Rect.height + player2Rect.top > alienRect2.top) {
-        //
-        //       console.log('boom 2 gameover');
-        //     }
-        //   }
+        var player2Rect = player2.rocketElement.getBoundingClientRect();
+        for(var k = 0; k<stars_player2.length;k++){
+          var starElement2 = stars_player2[k].starElement;
+
+          if(starElement2 == null){
+            continue;
+          }
+
+          var starRect2 = starElement2.getBoundingClientRect();
+          if (player2Rect.left < starRect2.left + starRect2.width &&
+              player2Rect.left + player2Rect.width > starRect2.left &&
+              player2Rect.top < starRect2.top + starRect2.height &&
+              player2Rect.height + player2Rect.top > starRect2.top) {
+
+              starElement2.remove();
+              stars_player2.splice(k,1);
+              scorePoints2();
+
+          }
+
+        }
+
+        //with the Aliens
+        for (var l = 0; l < alien_player2.length; l++){
+          var alienElement2 = alien_player2[l].alienElement;
+
+
+          var alienRect2 = alienElement2.getBoundingClientRect();
+          if (player2Rect.left < alienRect2.left + alienRect2.width &&
+              player2Rect.left + player2Rect.width > alienRect2.left &&
+              player2Rect.top < alienRect2.top + alienRect2.height &&
+              player1Rect.height + player2Rect.top > alienRect2.top) {
+
+              console.log('boom 2 gameover');
+            }
+          }
     }//end of collision detection
 
   //create a new star when collected one
   function createNewStar() {
     if (stars_player1.length < settings.numberOfStars) {
       stars_player1.push(new Star('player1'));
+    }
+  }
+  function createNewStar2() {
+    if (stars_player2.length < settings.numberOfStars) {
+      stars_player2.push(new Star('player2'));
     }
   }
 
@@ -207,14 +212,21 @@ var Game = function() {
       var alienElement = alien_player1[0].alienElement;
       alienElement.remove();
       alien_player1.splice(0,1);
+
+      var alienElement2 = alien_player2[0].alienElement;
+      alienElement2.remove();
+      alien_player2.splice(0,1);
     }
 
     if (alien_player1.length < settings.numberOfAliens) {
       alien_player1.push(new Alien('player1'));
     }
+    if (alien_player2.length < settings.numberOfAliens) {
+      alien_player2.push(new Alien('player2'));
+    }
   }
 
-  //score points
+  //score points for player 1
   function scorePoints() {
     score1 += 10;
     if (score1 < 100) {
@@ -223,6 +235,17 @@ var Game = function() {
         document.getElementById('scoreP1').innerHTML = "000"+score1;
       }else if (score1 < 10000) {
           document.getElementById('scoreP1').innerHTML = "00"+score1;
+        }
+  }
+  //score points for player 2
+  function scorePoints2() {
+    score2 += 10;
+    if (score2 < 100) {
+    document.getElementById('scoreP2').innerHTML = "0000"+score2;
+  } else if (score2 < 1000) {
+        document.getElementById('scoreP2').innerHTML = "000"+score2;
+      }else if (score2 < 10000) {
+          document.getElementById('scoreP2').innerHTML = "00"+score2;
         }
   }
 
@@ -280,6 +303,7 @@ var Game = function() {
     player2.render(interactions,'player2');
     CollisionDetect();
     createNewStar();
+    createNewStar2();
     moveAlien();
     frame++;
   }
