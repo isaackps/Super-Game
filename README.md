@@ -10,6 +10,7 @@ objective:
 4) The player with the most score wins!!
 
 Controls:
+
 "arrow up, arrow down, arrow left, arrow right" for player 1
 
 "w,a,s,d" for player 2
