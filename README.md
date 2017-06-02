@@ -1,5 +1,6 @@
 # Super-Game
 Super Space Destroy-Ya
+
 https://isaackps.github.io/Super-Game/
 
 objective:
@@ -10,4 +11,5 @@ objective:
 
 Controls:
 "arrow up, arrow down, arrow left, arrow right" for player 1
+
 "w,a,s,d" for player 2
